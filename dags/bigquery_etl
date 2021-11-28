@@ -1,0 +1,45 @@
+from airflow import DAG
+from airflow.models import Variable
+from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash import BashOperator
+from datetime import datetime, timedelta
+
+default_args = {
+    'owner': 'airflow',
+    'retries': 1, 
+    'retry_delay': timedelta(minutes=5)
+}
+
+dag = DAG(
+    dag_id = 'bigquery_etl',
+    start_date = datetime(2020,11,27),
+    schedule_interval = '0 8 * * *',
+	tags = ['financial', 'loan', 'relational_fit'],
+    catchup = False,
+	default_args=default_args,
+)
+
+# Extract with bash	example 
+
+mysql_extract = BashOperator(
+            task_id='mysql_extract',
+                bash_command='mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from account;" > {{ var.value.path }}/account.tsv && mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from card;" > {{ var.value.path }}/card.tsv && mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from client;" > {{ var.value.path }}/client.tsv &&mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from disp;" > {{ var.value.path }}/disp.tsv && mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from district;" > {{ var.value.path }}/district.tsv && mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from loan;" > {{ var.value.path }}/loan.tsv && mysql -h {{ var.value.host }} -P 3306 -u {{ var.value.user }} -p{{ var.value.password }} -D {{ var.value.db }} -e "select * from trans;" > {{ var.value.path }}/trans.tsv ',
+                    dag=dag,
+                    )
+
+bq_upload = BashOperator(
+    task_id='bq_upload',
+    bash_command='sh /home/iqbal/airflow/dags/bigquery_upload.sh ',
+    dag=dag,
+)
+
+bq_to_bq = BashOperator(
+    task_id='bq_to_bq',
+    bash_command='sh /home/iqbal/airflow/dags/bq_to_bq.sh ',
+    dag=dag,
+)
+		
+#DAG order
+
+mysql_extract >> bq_upload >> bq_to_bq
+
