@@ -34,6 +34,7 @@ This is etl script for bigquery, consists of 2 type of etl:
 3. Upload extracted data into google cloud storage (bucket)
 4. Create Big Query dataset and import data from bucket
 You can see the script in /script/mysql_extract.sh and /script/bigquery_upload.sh
+
 ![Screenshot (1)](https://user-images.githubusercontent.com/18484807/143806052-10e1f8b4-488a-4a52-be01-cef9fa418b47.png)
 
 
@@ -54,6 +55,7 @@ You can see the script in /script/mysql_extract.sh and /script/bigquery_upload.s
    · traffic_source -> filter the medium properties to “organic” only <br />
 3. Set option for dataset location, standard SQL (instead of legacy SQL), and partition
 You can see the script in /script/bq_to_bq.sh
+
 ![Screenshot (2)](https://user-images.githubusercontent.com/18484807/143806065-220b3e2a-1334-438d-9da9-406a3bd53e13.png)
 
 
