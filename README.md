@@ -34,6 +34,8 @@ This is etl script for bigquery, consists of 2 type of etl:
 3. Upload extracted data into google cloud storage (bucket)
 4. Create Big Query dataset and import data from bucket
 You can see the script in /script/mysql_extract.sh and /script/bigquery_upload.sh
+![image](https://user-images.githubusercontent.com/18484807/143805505-64ec3004-314a-4db7-8c49-bde5dd5c9522.png)
+
 
 ## Task 2: From Big Query Dataset to Big Query Dataseet
 1. Search big query public dataset bigquery-public-data.ga4_obfuscated_sample_ecommerce
@@ -52,3 +54,12 @@ You can see the script in /script/mysql_extract.sh and /script/bigquery_upload.s
    · traffic_source -> filter the medium properties to “organic” only <br />
 3. Set option for dataset location, standard SQL (instead of legacy SQL), and partition
 You can see the script in /script/bq_to_bq.sh
+![image](https://user-images.githubusercontent.com/18484807/143805624-ed7c06e5-bd84-45ad-a049-fd4c93e4dec0.png)
+
+
+## Airflow dags
+You can see the script in /dags/bigquery_etl.py
+
+![image](https://user-images.githubusercontent.com/18484807/143805147-766e7a98-c791-4a06-b31d-ed2b05b6339d.png)
+
+![image](https://user-images.githubusercontent.com/18484807/143805178-e9f34ff0-ddcf-4c28-9ec9-7c045cfa8a92.png)
