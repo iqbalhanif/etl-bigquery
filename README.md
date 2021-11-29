@@ -24,7 +24,7 @@ This is etl script for bigquery, consists of 2 type of etl:
 3. For Google SDK setup you can read [here](https://github.com/iqbalhanif/ge-data-quality)
 
 ## Task 1: From MySQL DB to Big Query Dataset
-1. Create Airflow variables to store confidential information such as MySQL connection properties:
+1. Create Airflow variables to store confidential information such as MySQL connection properties: <br />
    · Host <br />
    · User <br />
    · Password <br />
@@ -37,7 +37,7 @@ You can see the script in /script/mysql_extract.sh and /script/bigquery_upload.s
 
 ## Task 2: From Big Query Dataset to Big Query Dataseet
 1. Search big query public dataset bigquery-public-data.ga4_obfuscated_sample_ecommerce
-2. Create query for extracting this column on 'event' table
+2. Create query for extracting this column on 'event' table: <br />
    · event_date <br />
    · event_date_partition -> formatted result from “event_date” column to YYYY-MM-DD  <br />
    · event_params.key: page_title & page_location <br />
