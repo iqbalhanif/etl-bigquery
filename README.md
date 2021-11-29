@@ -60,6 +60,6 @@ You can see the script in /script/bq_to_bq.sh
 ## Airflow dags
 You can see the script in /dags/bigquery_etl.py
 
-![image](https://user-images.githubusercontent.com/18484807/143805147-766e7a98-c791-4a06-b31d-ed2b05b6339d.png)
+![Screenshot](https://user-images.githubusercontent.com/18484807/143806168-aa95e2a5-9c4d-4362-992c-ba0f5716d567.png)
 
-![image](https://user-images.githubusercontent.com/18484807/143805178-e9f34ff0-ddcf-4c28-9ec9-7c045cfa8a92.png)
+![Screenshot (3)](https://user-images.githubusercontent.com/18484807/143806177-0171be7e-b9dc-4b54-8b65-0f57169d77fc.png)
