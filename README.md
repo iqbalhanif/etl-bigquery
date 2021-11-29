@@ -1,6 +1,6 @@
 # ETL for Big Query
 
-This is etl script for bigquery, consists of 2 type of etl:
+This is ETL script for Big Query, consists of 2 type of ETL:
 1. MySQL DB to Big Query dataset
 2. Big Query dataset to Big Query dataset
 
